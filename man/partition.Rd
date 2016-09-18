@@ -7,7 +7,7 @@
 partition(x, FUN, ...)
 
 partition.functions
-# c("fixed", "ann")
+# c(".fixed", ".ann")
 }
 \arguments{
 \item{x}{A numeric matrix}

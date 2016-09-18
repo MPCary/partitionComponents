@@ -9,7 +9,7 @@
 #' partition(x, FUN, ...)
 #'   
 #' partition.functions
-#' # c("fixed", "ann")
+#' # c(".fixed", ".ann")
 #' @param x A numeric matrix
 #' @param FUN Function to use to determine threshold values for partitioning x
 #' @param ... Optional arguments to FUN
