@@ -1,0 +1,9 @@
+{
+    "path" : "~/MyRPackages/partitionComponents",
+    "sortOrder" : [
+        {
+            "ascending" : true,
+            "columnIndex" : 2
+        }
+    ]
+}

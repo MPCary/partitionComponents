@@ -1,0 +1,19 @@
+Package: partitionComponents
+Type: Package
+Title: Partition component matrices
+Version: 0.1.1
+Date: 2016-09-15
+Author: Michael Cary <michael.cary.dev@gmail.com>
+Maintainer: Michael Cary <michael.cary.dev@gmail.com>
+Description: For some signal-processing tasks, it is desirable to parition a component
+  matrix (e.g., the S matrix in ICA or the u matrix in SVD) column-wise in order to create
+  discrete subsets suitable for further analysis.  For example, when performing ICA of a
+  gene expression data matrix, one may wish to partition a component into three discrete sets
+  of genes (those with highly positive weights, those with highly negative weights, and
+  those with neither); this package was created to make this task easier.
+License: GPL (>= 2)
+LazyData: TRUE
+Depends: R (>= 3.0.3)
+Imports:
+    neuralnet (>= 1.32),
+    moments (>= 0.14)
