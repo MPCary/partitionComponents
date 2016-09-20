@@ -8,9 +8,9 @@
 #' @source See PMID:(TBD) for details of ann construction.
 "ann.partition.model.1"
 
-#' Data: List of built-in (non-exported) partitioning functions
+#' Data: List of supported partitioning methods
 #'
 #'
 #' @format A character vector
 #' 
-"partition.functions"
+"partition.methods"

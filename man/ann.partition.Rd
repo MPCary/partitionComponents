@@ -20,6 +20,11 @@ A matrix comprising values of 1, 0, and -1 to indicate column-wise
 Wrapper function for \code{\link{partition}} for partitioning using an
 artificial neural network
 }
+\details{
+The ("\code{model}") parameter specifies the ANN model to use for
+  calculating thresholds.  The default values is
+  \code{ann.partition.model.1}, which is supplied with this package.
+}
 \examples{
 x = matrix(rnorm(9), 3, 3)
 ann.partition(x)

@@ -4,17 +4,17 @@
 \alias{partition}
 \title{Partition a component matrix}
 \usage{
-partition(x, FUN, ...)
+partition(x, method = partition.methods, ...)
 
-partition.functions
-# c(".fixed", ".ann")
+partition.methods # c("fixed", "ann")
 }
 \arguments{
 \item{x}{A numeric matrix}
 
-\item{FUN}{Function to use to determine threshold values for partitioning x}
+\item{method}{Function to use to determine threshold values for partitioning
+x}
 
-\item{...}{Optional arguments to FUN}
+\item{...}{Optional arguments to partition method}
 }
 \value{
 A matrix comprising values of 1, 0, and -1 to indicate column-wise
@@ -28,18 +28,14 @@ partitioning of each column of the matrix into positive, neither, and
 negative subsets.
 }
 \details{
-Built-in partition functions are listed in the
-  \code{partition.functions} vector.  The ("\code{fixed}") function uses a
-  fixed value (specified by an additional parameter, \code{t}) to create
-  partitions, while the ("\code{ann}") function uses an artificial neural
+Built-in partition methods are listed in the
+  \code{partition.methods} vector.  The ("\code{fixed}") method uses a fixed
+  value (specified by an additional parameter, \code{t}) to create
+  partitions, while the ("\code{ann}") method uses an artificial neural
   network model to create custom partition thresholds for each component.
-  Additional user-defined functions are allowed.  These should return a
-  matrix with two rows and as many columns as in \code{x}; the first row of
-  this matrix specifies the upper partition threshold for each column of
-  \code{x}, while the second row specifies the lower partition threshold.
 }
 \examples{
 x = matrix(rnorm(9), 3, 3)
-partition(x, FUN = ".fixed", t = 0.5)
+partition(x, method = "fixed", t = 0.5)
 }
 

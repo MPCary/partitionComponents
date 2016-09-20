@@ -17,8 +17,8 @@ replaced with -1, and all other values are replaced with 0.
 \tabular{ll}{
 Package: \tab partitionComponents\cr
 Type: \tab Package\cr
-Version: \tab 0.1.1\cr
-Date: \tab 2016-09-18\cr
+Version: \tab 0.1.2\cr
+Date: \tab 2016-09-20\cr
 License: \tab GPL-2\cr
 Depends: \tab neuralnet, moments
 }

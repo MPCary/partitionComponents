@@ -5,33 +5,29 @@
 #' partitioning of each column of the matrix into positive, neither, and 
 #' negative subsets.
 #' 
-#' @usage
-#' partition(x, FUN, ...)
-#'   
-#' partition.functions
-#' # c(".fixed", ".ann")
+#' @usage partition(x, method = partition.methods, ...)
+#' 
+#' partition.methods # c("fixed", "ann")
 #' @param x A numeric matrix
-#' @param FUN Function to use to determine threshold values for partitioning x
-#' @param ... Optional arguments to FUN
-#' @details Built-in partition functions are listed in the 
-#'   \code{partition.functions} vector.  The ("\code{fixed}") function uses a
-#'   fixed value (specified by an additional parameter, \code{t}) to create
-#'   partitions, while the ("\code{ann}") function uses an artificial neural
-#'   network model to create custom partition thresholds for each component. 
-#'   Additional user-defined functions are allowed.  These should return a
-#'   matrix with two rows and as many columns as in \code{x}; the first row of
-#'   this matrix specifies the upper partition threshold for each column of
-#'   \code{x}, while the second row specifies the lower partition threshold.
+#' @param method Function to use to determine threshold values for partitioning
+#'   x
+#' @param ... Optional arguments to partition method
+#' @details Built-in partition methods are listed in the 
+#'   \code{partition.methods} vector.  The ("\code{fixed}") method uses a fixed
+#'   value (specified by an additional parameter, \code{t}) to create 
+#'   partitions, while the ("\code{ann}") method uses an artificial neural 
+#'   network model to create custom partition thresholds for each component.
 #' @return A matrix comprising values of 1, 0, and -1 to indicate column-wise 
 #'   partitioning of the input matrix into positive, neither, and negative sets,
 #'   respectively.
 #' @examples
 #' x = matrix(rnorm(9), 3, 3)
-#' partition(x, FUN = ".fixed", t = 0.5)
-partition <- function(x, FUN, ...) {
+#' partition(x, method = "fixed", t = 0.5)
+partition <- function(x, method = partition.methods, ...) {
   x = .checkMatrix(x) # Check x for well-formedness
 
-  thresholds = get(FUN)(x, ...) # Run FUN to obtain thresholds for each column
+  method.FUN = paste(".", method, sep = "")
+  thresholds = get(method.FUN)(x, ...) # Run method.FUN to get thresholds
   d = dim(thresholds)
   if((d[1] != 2) | (d[2] != ncol(x))) {
     stop("Partition threshold function failed")
@@ -68,13 +64,13 @@ partition <- function(x, FUN, ...) {
 #' fixed.partition(x)
 fixed.partition <- function(x, t = 3) {
   # Wrapper function for partition() using the fixed threshold method
-  partition(x, FUN = ".fixed", t = t)
+  partition(x, method = "fixed", t = t)
 }
 
 
 #' Wrapper function for ANN partitioning
 #' 
-#' Wrapper function for \code{\link{partition}} for partitioning using an
+#' Wrapper function for \code{\link{partition}} for partitioning using an 
 #' artificial neural network
 #' 
 #' @param x A numeric matrix
@@ -82,12 +78,15 @@ fixed.partition <- function(x, t = 3) {
 #' @return A matrix comprising values of 1, 0, and -1 to indicate column-wise 
 #'   partitioning of the input matrix into positive, neither, and negative sets,
 #'   respectively.
+#' @details The ("\code{model}") parameter specifies the ANN model to use for
+#'   calculating thresholds.  The default values is
+#'   \code{ann.partition.model.1}, which is supplied with this package.
 #' @examples
 #' x = matrix(rnorm(9), 3, 3)
 #' ann.partition(x)
 ann.partition <- function(x, model = ann.partition.model.1 ) {
   # Wrapper function for partition() using the fixed threshold method
-  partition(x, FUN = ".ann", model = model)
+  partition(x, method = "ann", model = model)
 }
 
 
